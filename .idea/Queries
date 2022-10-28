@@ -1,0 +1,64 @@
+/*
+UC1
+*/
+create database payroll_service;
+SHOW DATABASES;
+use payroll_service;
+
+
+
+/*
+UC2
+*/
+create table employee_payroll(
+id int not null auto_increment,
+empName varchar(25),
+salary int,
+startDate  date,
+primary key(id)
+);
+
+
+/*
+UC3
+*/
+insert into employee_payroll(empName,salary,startDate) values
+("Ananth",250000,"2020-10-22"),
+("Bharath",35000,"2020-10-22");
+
+
+/*
+UC4
+*/
+select* from employee_payroll;
+
+/*
+UC5
+*/
+select salary from employee_payroll  where empName="Ananth";
+select salary from employee_payroll  where empName="Bharath";
+select * from employee_payroll where startDate between cast(2021-10-02 as date) and date((now()));
+select* from employee_payroll;
+
+
+/*
+UC6
+*/
+
+alter table employee_payroll add gender char(1) not null after empName;
+select * from employee_payroll;
+update employee_payroll set gender = "M" where id = 1;
+update employee_payroll set gender = "M" where id = 2;
+insert into employee_payroll(empName,gender,salary,startDate) values
+("megha","F",34000,"2020-12-20")
+
+/*
+UC7
+*/
+
+select sum(salary) from employee_payroll where gender = "M" group by gender ;
+select sum(salary) from employee_payroll where gender = "F" group by gender ;
+select count(id) from employee_payroll;
+select min(salary) from employee_payroll;
+select max(salary) from employee_payroll;
+select avg(salary) from employee_payroll;
